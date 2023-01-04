@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var screenTapped: Bool = false
     @State private var offset: CGFloat = -300.0
     
+    let rotationAngle: CGFloat = 360.0
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -22,19 +24,25 @@ struct ContentView: View {
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
             
-            Text("SwiftUI Basics")
+            Text(screenTapped ? "SwiftUI Basics" : "To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be?")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
-                .offset(y: offset)
+                .multilineTextAlignment(.center)
+                .padding()
+                .rotation3DEffect(.degrees(screenTapped ? .zero : rotationAngle),
+                                  axis: (x: 0, y: 1, z: 0))
         }
         .onTapGesture {
-            // changes screen background on tap
-            screenTapped.toggle()
             
-            withAnimation(.easeIn(duration: 0.3)) {
-                offset = CGFloat.random(in: 0...300)
+            withAnimation(.easeIn(duration: 0.5)) {
+                // changes screen background on tap
+                screenTapped.toggle()
             }
+            
+//            withAnimation(.easeIn(duration: 0.3)) {
+//                offset = CGFloat.random(in: -150...150)
+//            }
         }
     }
 }
