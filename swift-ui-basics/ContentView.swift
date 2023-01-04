@@ -24,14 +24,23 @@ struct ContentView: View {
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
             
-            Text(screenTapped ? "SwiftUI Basics" : "To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be?")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .padding()
-                .rotation3DEffect(.degrees(screenTapped ? .zero : rotationAngle),
-                                  axis: (x: 0, y: 1, z: 0))
+            VStack {
+                Text(screenTapped ? "SwiftUI Basics" : "To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be? To be or not to be?")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .rotation3DEffect(.degrees(screenTapped ? .zero : rotationAngle),
+                                      axis: (x: 0, y: 1, z: 0))
+                
+                Text("This is just a test.")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .opacity(0.7)
+                    .rotation3DEffect(.degrees(screenTapped ? .zero : rotationAngle),
+                                      axis: (x: 0, y: 1, z: 0))
+            }.padding()
         }
         .onTapGesture {
             
